@@ -1,0 +1,12 @@
+version: '3.6'
+services:
+  fastapi_development:
+    build:
+      target: development
+    tty: true
+    stdin_open: true
+    command: uvicorn main:app --host=0.0.0.0 --reload
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/server
