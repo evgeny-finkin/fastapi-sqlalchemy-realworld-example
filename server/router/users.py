@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Path, Query
 from typing import List
 
-from models import User
+from schemas import User
 
 router = APIRouter()
 
