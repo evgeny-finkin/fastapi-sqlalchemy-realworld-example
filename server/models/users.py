@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from ..services.postgres import Base, engine
+from ..services.postgres import Base, postgres_engine
 
 
 class User(Base):
@@ -10,4 +10,4 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
 
 
-User.Base.metadata.create_all(bind=engine)
+User.Base.metadata.create_all(bind=postgres_engine)
