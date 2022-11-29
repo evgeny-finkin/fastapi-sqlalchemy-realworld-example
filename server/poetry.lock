@@ -152,6 +152,14 @@ version = "2.1.1"
 [[package]]
 category = "main"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
+name = "psycopg2"
+optional = false
+python-versions = ">=3.6"
+version = "2.9.5"
+
+[[package]]
+category = "main"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
 name = "psycopg2-binary"
 optional = false
 python-versions = ">=3.6"
@@ -256,7 +264,7 @@ h11 = ">=0.8"
 standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,<0.15.0 || >0.15.0,<0.15.1 || >0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
 
 [metadata]
-content-hash = "1c6b0f38f0be17552484ec74a4fed7de409af7a424905d8b2f2bf31fed992413"
+content-hash = "74b5ffc4da8990a089aee02dcf3fbbaedee41c7ca5ccda89b9457ffcf7deb327"
 python-versions = "^3.10"
 
 [metadata.files]
@@ -272,6 +280,7 @@ h11 = []
 idna = []
 mako = []
 markupsafe = []
+psycopg2 = []
 psycopg2-binary = []
 pydantic = []
 sniffio = []

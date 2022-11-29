@@ -24,11 +24,14 @@ services:
       target: development
     tty: true
     stdin_open: true
+    restart: always
     command: uvicorn main:app --host=0.0.0.0 --reload
     ports:
       - 8000:8000
     volumes:
       - ./:/server
+    depends_on:
+      - postgres
 
 volumes:
   db_data:

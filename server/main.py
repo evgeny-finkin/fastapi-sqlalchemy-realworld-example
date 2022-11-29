@@ -2,6 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 
 from router import router
+from models import users
+from services import postgres
 
 app = FastAPI(
     title='Real world app (RWA) backend using fastAPI, poetry and sqlalchemy',
@@ -12,6 +14,7 @@ app = FastAPI(
 )
 
 app.include_router(router)
+# users.Base.create_all(bind=postgres.engine)
 
 # if __name__ == '__main__':
 #     uvicorn.run(
@@ -20,6 +23,8 @@ app.include_router(router)
 #         reload=True,
 #         port=8000
 #     )
+
+# 1:34:57
 
 
 @app.get("/")
