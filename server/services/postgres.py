@@ -21,9 +21,9 @@ Base = declarative_base()
 # DB Util
 
 
-def get_db():
-    db = Session()
+def get_session():
+    session = Session()
     try:
-        yield db
+        yield session
     finally:
-        db.close()
+        session.close()

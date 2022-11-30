@@ -2,7 +2,17 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 
-class User(BaseModel):
-    isActive: bool
+class UserBase(BaseModel):
     email: EmailStr
-    bio: Optional[str]
+
+
+class UserCreate(UserBase):
+    ...
+
+
+class User(BaseModel):
+    id: int
+    email: EmailStr
+
+    class Config:
+        orm_mode = True
