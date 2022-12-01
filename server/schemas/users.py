@@ -6,6 +6,14 @@ class UserBase(BaseModel):
     email: EmailStr
 
 
+class UpdatedUser(BaseModel):
+    username: Optional[str]
+    email: Optional[EmailStr]
+    password: Optional[str]
+    bio: Optional[str]
+    image: Optional[HttpUrl]
+
+
 class NewUser(BaseModel):
     username: str
     email: EmailStr

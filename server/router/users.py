@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.post('/login', response_model=User)
-async def login(
+async def authentication(
     session: AsyncSession = Depends(postgres.get_async_session),
     authentication_user: AuthenticationUser = None
 ):

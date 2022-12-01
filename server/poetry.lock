@@ -111,6 +111,24 @@ test = ["anyio (>=3.2.1,<4.0.0)", "black (22.8.0)", "coverage (>=6.5.0,<7.0)", "
 
 [[package]]
 category = "main"
+description = "FastAPI extension that provides JWT Auth support (secure, easy to use and lightweight)"
+name = "fastapi-jwt-auth"
+optional = false
+python-versions = ">=3.6"
+version = "0.5.0"
+
+[package.dependencies]
+PyJWT = ">=1.7.1,<2.0.0"
+fastapi = ">=0.61.0"
+
+[package.extras]
+asymmetric = ["cryptography (>=2.6,<4.0.0)"]
+dev = ["cryptography (>=2.6,<4.0.0)", "uvicorn (>=0.11.5,<0.12.0)"]
+doc = ["mkdocs (>=1.1.2,<2.0.0)", "mkdocs-material (>=5.5.0,<6.0.0)", "markdown-include (>=0.5.1,<0.6.0)"]
+test = ["pytest (6.0.1)", "pytest-cov (2.10.0)", "coveralls (2.1.2)"]
+
+[[package]]
+category = "main"
 description = "Lightweight in-process concurrent programming"
 marker = "python_version >= \"3\" and (platform_machine == \"aarch64\" or platform_machine == \"ppc64le\" or platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"AMD64\" or platform_machine == \"win32\" or platform_machine == \"WIN32\")"
 name = "greenlet"
@@ -199,6 +217,19 @@ email = ["email-validator (>=1.0.3)"]
 
 [[package]]
 category = "main"
+description = "JSON Web Token implementation in Python"
+name = "pyjwt"
+optional = false
+python-versions = "*"
+version = "1.7.1"
+
+[package.extras]
+crypto = ["cryptography (>=1.4)"]
+flake8 = ["flake8", "flake8-import-order", "pep8-naming"]
+test = ["pytest (>=4.0.1,<5.0.0)", "pytest-cov (>=2.6.0,<3.0.0)", "pytest-runner (>=4.2,<5.0.0)"]
+
+[[package]]
+category = "main"
 description = "Sniff out which async library your code is running under"
 name = "sniffio"
 optional = false
@@ -277,7 +308,7 @@ h11 = ">=0.8"
 standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,<0.15.0 || >0.15.0,<0.15.1 || >0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
 
 [metadata]
-content-hash = "d059d7f1cb5b694d3309b1de21fe5063fa91c3b4cec6f41d26e99d1466fc4d98"
+content-hash = "3c5231ba2db3e0563903f298610fae44569e64f37360f26373d07dec6676bc4e"
 python-versions = "^3.10"
 
 [metadata.files]
@@ -289,6 +320,7 @@ colorama = []
 dnspython = []
 email-validator = []
 fastapi = []
+fastapi-jwt-auth = []
 greenlet = []
 h11 = []
 idna = []
@@ -297,6 +329,7 @@ markupsafe = []
 psycopg2 = []
 psycopg2-binary = []
 pydantic = []
+pyjwt = []
 sniffio = []
 sqlalchemy = []
 starlette = []

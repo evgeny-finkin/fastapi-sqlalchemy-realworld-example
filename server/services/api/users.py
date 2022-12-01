@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from pydantic import EmailStr
 
-from schemas import NewUser, AuthenticationUser
+from schemas import NewUser, AuthenticationUser, UpdatedUser
 from models import User
 
 
@@ -30,4 +30,9 @@ def authentication(session: Session, authentication_user: AuthenticationUser):
 
 def create_user(session: Session, new_user: NewUser):
     print('new user created')
+    # return db_user
+
+
+def update_user(session: Session, updated_user: UpdatedUser):
+    print('user updated')
     # return db_user
