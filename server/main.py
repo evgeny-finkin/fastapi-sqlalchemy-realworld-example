@@ -24,9 +24,4 @@ app.include_router(router)
 #         port=8000
 #     )
 
-# 1:49:01
-
-
-@app.get("/")
-async def root():
-    return {'hello': 'world'}
+# 2:36:23
