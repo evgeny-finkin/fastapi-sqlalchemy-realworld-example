@@ -30,7 +30,7 @@ async def follow_user(
     return profile
 
 
-@router.delet('/{username}/follow', response_model=Profile)
+@router.delete('/{username}/follow', response_model=Profile)
 async def unfollow_user(
     session: AsyncSession = Depends(postgres.get_async_session),
     username: str = Path(...,

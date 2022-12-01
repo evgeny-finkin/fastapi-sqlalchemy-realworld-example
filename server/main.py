@@ -2,8 +2,6 @@ import uvicorn
 from fastapi import FastAPI
 
 from router import router
-from models import users
-from services import postgres
 
 app = FastAPI(
     title='Real world app (RWA) backend using fastAPI, poetry and sqlalchemy',
