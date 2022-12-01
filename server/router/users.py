@@ -3,7 +3,7 @@ from typing import List
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from schemas import User, NewUser, AuthenticationUser
-from services import users, postgres
+from services import postgres, api
 
 router = APIRouter()
 
@@ -13,10 +13,10 @@ async def login(
     session: AsyncSession = Depends(postgres.get_async_session),
     authentication_user: AuthenticationUser = None
 ):
-    is_authenticated = users.authentication(session, authentication_user)
+    is_authenticated = api.users.authentication(session, authentication_user)
     if is_authenticated is False:
         raise HTTPException(status_code=404, detail='User not found')
-    user = await users.get_user(session, user.email)
+    user = await api.users.get_user(session, user.email)
     return user
 
 
@@ -25,7 +25,7 @@ async def registration(
     session: AsyncSession = Depends(postgres.get_async_session),
     new_user: NewUser = None
 ):
-    user = await users.create_user(session, new_user)
+    user = await api.users.create_user(session, new_user)
     return user
 
 
