@@ -7,6 +7,10 @@ from schemas import NewUser, AuthenticationUser
 from models import User
 
 
+def test():
+    return {'hello': 'world'}
+
+
 async def get_user(session: AsyncSession, email: EmailStr):
     query = select(User).where(User.email == email)
     result = await session.execute(query)
