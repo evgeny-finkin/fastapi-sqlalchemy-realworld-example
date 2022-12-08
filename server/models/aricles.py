@@ -1,18 +1,20 @@
-from sqlalchemy import Column, Integer, String
-
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 from services import postgres
+from sqlalchemy_utils import EmailType
+
+from .mixins import Timestamp
 
 
-class Articals(postgres.Base):
+class Artical(Timestamp, postgres.Base):
     __tablename__ = 'articals'
 
-    slug = Column(Integer, primary_key=True, index=True)
-    title = Column(String, unique=True, index=True, nullable=False)
-    description = Column(String, unique=True, index=True, nullable=False)
-    body = Column(String, unique=True, index=True, nullable=False)
-    tagList = Column(String, unique=True, index=True, nullable=False)
-    createdAt = Column(String, unique=True, index=True, nullable=False)
-    updatedAt = Column(String, unique=True, index=True, nullable=False)
-    favorited = Column(String, unique=True, index=True, nullable=False)
-    favoritesCount = Column(String, unique=True, index=True, nullable=False)
-    author = Column(String, unique=True, index=True, nullable=False)
+    title = Column(String, nullable=False, primary_key=True)
+    description = Column(String, nullable=False)
+    body = Column(String, nullable=False)
+    tagList = Column(String)
+    author_email = Column(EmailType, ForeignKey('users.email'))
+
+    comments = relationship("Comment", back_populates="artical")
+    author = relationship("User", back_populates="articals", uselist=False)
+    followers = relationship("User", back_populates="followed_articals")

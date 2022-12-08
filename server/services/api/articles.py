@@ -13,7 +13,7 @@ async def get_articles_by_tegs(
         offset: int = 0,
         tag: str = None,
         author: str = None,
-        favorited: str = None):
+        favorited: bool = None):
     print('get articles')
     # return
 

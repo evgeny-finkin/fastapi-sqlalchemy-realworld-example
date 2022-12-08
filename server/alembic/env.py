@@ -7,8 +7,8 @@ from alembic import context
 
 # from services import postgres
 
-from models.users import User
 from services import postgres
+import asyncio
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -24,7 +24,8 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # User.metadata.create_all(bind=postgres.engine)
-target_metadata = User.metadata
+
+target_metadata = postgres.Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

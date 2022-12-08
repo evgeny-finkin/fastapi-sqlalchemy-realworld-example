@@ -4,7 +4,7 @@ from sqlalchemy.future import select
 from pydantic import EmailStr
 
 from schemas import NewUser, AuthenticationUser, UpdatedUser
-from models import Profiles
+# from models import Profiles
 
 
 async def get_profile(session: AsyncSession, username: str):

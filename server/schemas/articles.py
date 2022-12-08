@@ -15,7 +15,7 @@ class Article (BaseModel):
     description: str
     body: str
     tagList: List[str]
-    favorited: List[str]
+    favorited: bool
     favoritesCount: int
     author: Author
 

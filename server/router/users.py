@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Path
 from typing import List
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from schemas import User, NewUser, AuthenticationUser
+from schemas import User, NewUser, AuthenticationUser, UserResponse, RequestUser, UpdatedUser
 from services import postgres, api
 
 router = APIRouter()
@@ -13,40 +13,47 @@ async def authentication(
     session: AsyncSession = Depends(postgres.get_async_session),
     authentication_user: AuthenticationUser = None
 ):
-    is_authenticated = api.users.authentication(session, authentication_user)
-    if is_authenticated is False:
-        raise HTTPException(status_code=404, detail='User not found')
+    # is_authenticated = api.users.authentication(session, authentication_user)
+    # if is_authenticated is False:
+    #     raise HTTPException(status_code=404, detail='User not found')
     user = await api.users.get_user(session, user.email)
     return user
 
 
-@router.post('/', response_model=User, status_code=201)
+@router.post('/', response_model=UserResponse, status_code=201)
 async def registration(
     session: AsyncSession = Depends(postgres.get_async_session),
     new_user: NewUser = None
 ):
-    user = await api.users.create_user(session, new_user)
-    return user
+    await api.users.create_user(session, new_user)
+    user_response = UserResponse(
+        username=new_user.username,
+        email=new_user.email,
+        bio=new_user.bio,
+        image=new_user.image
+    )
+    return user_response
 
 
-# @router.get('/', response_model=List[User])
-# async def get_users(session: Session = Depends(postgres.get_session), skip: int = 0, limit: int = 10):
-#     users = user.get_users(session, skip, limit)
-#     return users
+@router.get('/', response_model=UserResponse)
+async def get_users(
+    session: AsyncSession = Depends(postgres.get_async_session),
+    request_user: RequestUser = None
+):
+    # TODO: need to return user from jwt
+    user = await api.users.get_user(session, request_user.email)
+    user_response = UserResponse(
+        username=user.username,
+        email=user.email,
+        bio=user.bio,
+        image=user.image
+    )
+    return user_response
 
 
-# @router.post('/', response_model=User, status_code=201)
-# async def add_user(session: Session = Depends(postgres.get_session), userCreate: UserCreate = None):
-#     _user = user.create_user(session, userCreate)
-#     return _user
-
-
-# @router.get('/{id}', response_model=User)
-# async def get_user(
-#     session: AsyncSession = Depends(postgres.get_async_session),
-#     id: int = Path(..., description='The id of the user you want to retrive')
-# ):
-#     _user = await users.get_user(session, id)
-#     if _user is None:
-#         raise HTTPException(status_code=404, detail='User not found')
-#     return _user
+@router.put('/', status_code=204)
+async def update_user(
+    session: AsyncSession = Depends(postgres.get_async_session),
+    updated_user: UpdatedUser = None
+):
+    await api.users.update_user(session, updated_user)

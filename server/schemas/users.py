@@ -3,6 +3,7 @@ from typing import Optional
 
 
 class UserBase(BaseModel):
+    username: str
     email: EmailStr
 
 
@@ -21,10 +22,32 @@ class NewUser(BaseModel):
     bio: Optional[str]
     image: Optional[HttpUrl]
 
+    class Config:
+        orm_mode = True
+
+
+class UserResponse(BaseModel):
+    username: str
+    email: EmailStr
+    bio: Optional[str]
+    image: Optional[HttpUrl]
+
+    class Config:
+        orm_mode = True
+
 
 class AuthenticationUser(BaseModel):
     email: EmailStr
     password: str
+
+
+class RequestUser(BaseModel):
+    email: EmailStr
+    password: str
+    username: str
+
+    class Config:
+        orm_mode = True
 
 
 class User(BaseModel):
