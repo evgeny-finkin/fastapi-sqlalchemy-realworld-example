@@ -49,11 +49,3 @@ async def get_users(
         image=user.image
     )
     return user_response
-
-
-@router.put('/', status_code=204)
-async def update_user(
-    session: AsyncSession = Depends(postgres.get_async_session),
-    updated_user: UpdatedUser = None
-):
-    await api.users.update_user(session, updated_user)
